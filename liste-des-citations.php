@@ -22,6 +22,10 @@ $quoteList = $query->fetchAll(PDO::FETCH_ASSOC);
     <title>Liste des citations</title>
 </head>
 <body>
+
+    <?php require "navigation.php"?>
+
+
     <h1>Liste des citations</h1>
 
     <table>

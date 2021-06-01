@@ -24,13 +24,7 @@
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li>
-                <a href="liste-des-citations.php">Liste</a>
-            </li>
-        </ul>
-    </nav>
+    <?php require "navigation.php" ?>
 
     <h1>La citation du jour</h1>
 
