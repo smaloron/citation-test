@@ -24,7 +24,16 @@
 </head>
 
 <body>
+    <nav>
+        <ul>
+            <li>
+                <a href="liste-des-citations.php">Liste</a>
+            </li>
+        </ul>
+    </nav>
+
     <h1>La citation du jour</h1>
+
 
     <div>
         <figure>
