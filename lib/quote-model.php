@@ -23,7 +23,7 @@ function getRandomQuote()
 }
 
 /**
- * Retourne la liste des citations 
+ * Retourne la liste des citations
  * à partir d'une requête sur la BD
  *
  * @return array
@@ -40,4 +40,74 @@ function getAllQuotes()
     $quoteList = $query->fetchAll(PDO::FETCH_ASSOC);
 
     return $quoteList;
+}
+
+/**
+ * Validation des données contenues dans $data 
+ *
+ * @param array $data
+ * @return array $errors
+ */
+function validateInput(array $data){
+    // Initialisation du tableau des erreurs
+    $errors = [];
+    if (empty($data["texte"])) {
+        $errors[] = "Le texte ne peut être vide";
+    }
+
+    if (empty($data["auteur"])) {
+        $errors[] = "L'auteur ne peut être vide";
+    }
+
+    return $errors;
+}
+
+/**
+ * Insertion d'une citation dans la base de données
+ *
+ * @param array $data
+ * @return void
+ */
+function insertQuote(array $data){
+    // On ajoute la nouvelle citation
+    $pdo = getPDO();
+    // La requête sql
+    $sql = "INSERT INTO citations (texte, auteur) VALUES (?,?)";
+    // Préparation de la requête
+    $statement = $pdo->prepare($sql);
+    // paramètres
+    $params = [$data["texte"], $data["auteur"]];
+    // Exécution en passant les paramètres
+    $statement->execute($params);
+}
+
+/**
+ * Traitement du formulaire d'ajout de citation
+ *
+ * @return array $errors
+ */
+function handleInsertQuoteForm()
+{
+    // On récupère la saisie
+    $data = filter_input_array(INPUT_POST, [
+        "texte" => FILTER_SANITIZE_STRING,
+        "auteur" => FILTER_SANITIZE_STRING
+    ]);
+
+    // Validation de la saisie
+    $errors = validateInput($data);
+    
+    // Insertion uniquement s'il n'y a pas d'erreurs
+    if (count($errors) == 0) {
+        try {
+            insertQuote($data);
+            // redirection vers la liste des citations
+            header("location:liste-des-citations.php");
+            exit;
+        } catch (Exception $ex) {
+            $errors[] = "Erreur interne du serveur";
+        }
+    }
+
+    return $errors;
 }
