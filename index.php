@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     // Import de la bibliothèque quote-model
     require "lib/quote-model.php";
 
@@ -13,6 +15,10 @@
 
     <h1 class="mb-3">La citation du jour</h1>
 
+    <!-- on dit bonjour à l'utilisateur -->
+    <?php if(isset($_SESSION["user"])): ?>
+        <p>Bonjour admin</p>
+    <?php endif ?>
 
     <div class="alert alert-success">
         <figure>
