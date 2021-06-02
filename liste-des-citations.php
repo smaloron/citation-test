@@ -15,28 +15,33 @@ $quoteList = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <?php require "head.php" ?>
 
-<body>
+<body class="container-fluid">
 
     <?php require "navigation.php"?>
 
 
-    <h1>Liste des citations</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-10 p-2">
+            <h1>Liste des citations</h1>
 
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Texte</th>
-            <th>Auteur</th>
-        </tr>
+            <table class="table table-striped">
+                <tr>
+                    <th>id</th>
+                    <th>Texte</th>
+                    <th>Auteur</th>
+                </tr>
 
-        <?php foreach($quoteList as $quote): ?>
-            <tr>
-                <td> <?= $quote["id"]?> </td>
-                <td> <?= $quote["texte"]?> </td>
-                <td> <?= $quote["auteur"]?> </td>
-            </tr>
-        <?php endforeach ?>
-    
-    </table>
+                <?php foreach($quoteList as $quote): ?>
+                <tr>
+                    <td> <?= $quote["id"]?> </td>
+                    <td> <?= $quote["texte"]?> </td>
+                    <td> <?= $quote["auteur"]?> </td>
+                </tr>
+                <?php endforeach ?>
+
+            </table>
+        </div>
+    </div>
 </body>
+
 </html>
