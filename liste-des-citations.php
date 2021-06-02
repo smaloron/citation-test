@@ -1,15 +1,8 @@
 <?php
 // Import
-require "lib/pdo.php";
+require "lib/quote-model.php";
 
-// connexion BD
-$cn = getPDO();
-
-// Requête SQL
-$query = $cn->query("SELECT * FROM citations");
-
-// Récupération des résultats dans une variable
-$quoteList = $query->fetchAll(PDO::FETCH_ASSOC);
+$quoteList = getAllQuotes();
 
 ?>
 

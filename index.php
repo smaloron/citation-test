@@ -1,15 +1,8 @@
 <?php
-    // Import de la bibliothèque pdo
-    require "lib/pdo.php";
+    // Import de la bibliothèque quote-model
+    require "lib/quote-model.php";
 
-    // création de la connexion
-    $cn = getPDO();
-    // Requête pour extraire une citation
-    // ORDER BY RAND() effectue un tri aléatoire
-    // LIMIT 1 permet de n'obtenir qu'une ligne
-    $query = $cn->query("SELECT * FROM citations ORDER BY RAND() LIMIT 1 ");
-    // Récupération des données de la requête
-    $quote = $query->fetch(PDO::FETCH_ASSOC);
+    $quote = getRandomQuote();
     
 ?>
 
