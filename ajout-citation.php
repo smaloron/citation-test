@@ -15,7 +15,7 @@ $errors = [];
 // On traite le formulaire si les données ont été postées
 if(isPosted()){
     // Appel de la fonction de traitement du formulaire
-    $errors = handleInsertQuoteForm();
+    $errors = handleQuoteForm();
 }
 
 ?>

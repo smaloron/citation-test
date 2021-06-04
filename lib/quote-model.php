@@ -81,12 +81,21 @@ function insertQuote(array $data){
     $statement->execute($params);
 }
 
+function updateQuote(array $data, int $id){
+    $pdo = getPDO();
+    $sql = "UPDATE citations SET texte=:texte, auteur=:auteur WHERE id=:id";
+    $statement = $pdo->prepare($sql);
+    // ajout de la clef id aux paramètres
+    $data["id"] = $id;
+    $statement->execute($data);
+}
+
 /**
  * Traitement du formulaire d'ajout de citation
  *
  * @return array $errors
  */
-function handleInsertQuoteForm()
+function handleQuoteForm(int $id = null)
 {
     // On récupère la saisie
     $data = filter_input_array(INPUT_POST, [
@@ -100,7 +109,14 @@ function handleInsertQuoteForm()
     // Insertion uniquement s'il n'y a pas d'erreurs
     if (count($errors) == 0) {
         try {
-            insertQuote($data);
+            // Ajout ou modification 
+            // en fonction de la valeur de $id
+            if($id){
+                updateQuote($data, $id);
+            } else {
+                insertQuote($data);
+            }
+            
             // redirection vers la liste des citations
             header("location:liste-des-citations.php");
             exit;
@@ -135,4 +151,27 @@ function deleteOneQuoteById(int $id)
 // en passant le paramètre dans un tableau ordinal
     $statement->execute([$id]);
 }
+
+/**
+ *
+ * Retourne une citation extraite de la BD
+ * en fonction d'un id passé en argument
+ * @param int $id
+ * @return array
+ */
+function getOneQuoteById(int $id)
+{
+    $pdo = getPDO();
+
+// La requête
+    $sql = "SELECT * FROM citations WHERE id=?";
+// La préparation
+    $statement = $pdo->prepare($sql);
+// l'exécution
+    $statement->execute([$id]);
+// récupération des données
+    $quote = $statement->fetch(PDO::FETCH_ASSOC);
+    return $quote;
+}
+
 

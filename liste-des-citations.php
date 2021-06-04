@@ -35,6 +35,10 @@ $quoteList = getAllQuotes();
                         class="btn btn-danger">
                             supprimer
                         </a>
+                        <a href="update-citation.php?id=<?= $quote["id"]?>"
+                        class="btn btn-warning">
+                            modifier
+                        </a>
                     </td>
                 </tr>
                 <?php endforeach ?>
