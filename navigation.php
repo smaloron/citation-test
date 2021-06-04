@@ -12,6 +12,10 @@
                 <a href="ajout-citation.php" class="nav-link">
                 Nouvelle citation</a>
             </li>
+
+            <li class="nav-item">
+                <a href="logout.php" class="nav-link">Déconnexion</a>
+            </li>
         <?php else: ?>
             <li class="nav-item">
                 <a href="login.php" class="nav-link">Connexion</a>

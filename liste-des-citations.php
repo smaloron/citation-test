@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Import
 require "lib/quote-model.php";
 
