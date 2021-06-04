@@ -111,3 +111,28 @@ function handleInsertQuoteForm()
 
     return $errors;
 }
+
+/**
+ *
+ * Suppression d'une citation dans la BD
+ * en fonction d'un argument $id
+ *
+ * @return void
+ *
+ */
+function deleteOneQuoteById(int $id)
+{
+// Requête SQL pour la suppression
+    $sql = "DELETE FROM citations WHERE id=?";
+
+// obtention d'une instance de pdo (connexion à la BD)
+    $pdo = getPDO();
+
+// préparation de la requête
+    $statement = $pdo->prepare($sql);
+
+// exécution de la requête
+// en passant le paramètre dans un tableau ordinal
+    $statement->execute([$id]);
+}
+

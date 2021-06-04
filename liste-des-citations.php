@@ -22,6 +22,7 @@ $quoteList = getAllQuotes();
                     <th>id</th>
                     <th>Texte</th>
                     <th>Auteur</th>
+                    <th>actions</th>
                 </tr>
 
                 <?php foreach($quoteList as $quote): ?>
@@ -29,6 +30,12 @@ $quoteList = getAllQuotes();
                     <td> <?= $quote["id"]?> </td>
                     <td> <?= $quote["texte"]?> </td>
                     <td> <?= $quote["auteur"]?> </td>
+                    <td>
+                        <a href="delete-citation.php?id=<?= $quote["id"]?>"
+                        class="btn btn-danger">
+                            supprimer
+                        </a>
+                    </td>
                 </tr>
                 <?php endforeach ?>
 
