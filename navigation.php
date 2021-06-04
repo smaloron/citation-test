@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a href="login.php" class="nav-link">Connexion</a>
             </li>
+            <li class="nav-item">
+                <a href="inscription.php" class="nav-link">Inscription</a>
+            </li>
         <?php endif ?>
     </ul>
 </nav>
