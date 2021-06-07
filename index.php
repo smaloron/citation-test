@@ -3,6 +3,7 @@
 
     // Import de la bibliothèque quote-model
     require "lib/quote-model.php";
+    require "lib/user-model.php";
 
     $quote = getRandomQuote();
     
@@ -15,9 +16,19 @@
 
     <h1 class="mb-3">La citation du jour</h1>
 
+
+
+    <!-- Affichage du message -->
+    <?php if(hasFlashMessage()): ?>
+        <div class="alert alert-primary">
+            <?= getFlashMessage() ?>
+        </div>
+    <?php endif ?>
+    
+
     <!-- on dit bonjour à l'utilisateur -->
-    <?php if(isset($_SESSION["user"])): ?>
-        <p>Bonjour admin</p>
+    <?php if(isUserLogged()): ?>
+        <p>Bonjour <?= getUserName() ?></p>
     <?php endif ?>
 
     <div class="alert alert-success">

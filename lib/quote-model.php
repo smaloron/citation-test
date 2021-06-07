@@ -1,6 +1,6 @@
 <?php
 
-require "lib/pdo.php";
+require_once "lib/pdo.php";
 
 /**
  * Retourne une citation aléatoire extraite de la DB
